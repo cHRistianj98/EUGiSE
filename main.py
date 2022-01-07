@@ -118,3 +118,4 @@ plt.title('Recall Function Evolution')
 plt.legend()
 plt.show()
 
+model.save('cnn_epochs.h5')
