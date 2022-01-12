@@ -8,12 +8,6 @@ model = keras.models.load_model('cnn_epochs.h5')
 
 # Load the data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
-
-print(f"X_train shape: {X_train.shape}")
-print(f"y_train shape: {y_train.shape}")
-print(f"X_test shape: {X_test.shape}")
-print(f"y_test shape: {y_test.shape}")
-
 classes_name = ['Airplane', 'Automobile', 'Bird', 'Cat', 'Deer', 'Dog', 'Frog', 'Horse', 'Ship', 'Truck']
 
 # Scale the data
@@ -24,11 +18,21 @@ X_test = X_test / 255.0
 y_cat_train = to_categorical(y_train, 10)
 y_cat_test = to_categorical(y_test, 10)
 
-print(y_cat_train)
+# Image tests
+# my_image = X_test[100]
+# plt.imshow(my_image)
+# plt.show()
+# print(y_test[100])
+# print(classes_name[np.argmax(model.predict(my_image.reshape(1, 32, 32, 3)))])
 
-# Image test
-my_image = X_test[100]
+# my_image = X_test[70]
+# plt.imshow(my_image)
+# plt.show()
+# print(y_test[70])
+# print(classes_name[np.argmax(model.predict(my_image.reshape(1, 32, 32, 3)))])
+
+my_image = X_test[44]
 plt.imshow(my_image)
 plt.show()
-print(y_test[100])
-print(np.argmax(model.predict(my_image.reshape(1, 32, 32, 3))))
+print(y_test[44])
+print(classes_name[np.argmax(model.predict(my_image.reshape(1, 32, 32, 3)))])
