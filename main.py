@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 # %matplotlib inline
 
 import tensorflow as tf
+from keras.applications.densenet import DenseNet121
 from tensorflow.keras.datasets import cifar10
 from tensorflow.keras.utils import to_categorical
 
@@ -42,6 +43,7 @@ def show_metrics(res):
     plt.plot(res.history['val_recall'], label='val_recall')
     plt.title('Recall Function Evolution')
     plt.legend()
+    plt.savefig(fname='dense-model.png', orientation='landscape')
     plt.show()
 
 
@@ -79,6 +81,13 @@ def build_model(net_model):
     return net_model
 
 
+def build_dense_net_model(net_model):
+    base_model = DenseNet121(input_shape=(32, 32, 3), include_top=False, weights='imagenet', pooling='avg')
+    net_model.add(base_model)
+    net_model.add(Dense(10, activation='softmax'))
+    return net_model
+
+
 # Load the data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
 
@@ -94,7 +103,8 @@ y_cat_test = to_categorical(y_test, 10)
 
 # Building model
 model = Sequential()
-model = build_model(model)
+# model = build_model(model)
+model = build_dense_net_model(model)
 
 METRICS = [
     'accuracy',
@@ -112,10 +122,16 @@ data_generator = ImageDataGenerator(width_shift_range=0.1, height_shift_range=0.
 train_generator = data_generator.flow(X_train, y_cat_train, batch_size)
 steps_per_epoch = X_train.shape[0] // batch_size
 
+
 r = model.fit(train_generator,
-              epochs=50,
+              epochs=100,
               steps_per_epoch=steps_per_epoch,
               validation_data=(X_test, y_cat_test))
+
+# r = model.fit(train_generator,
+#               epochs=50,
+#               steps_per_epoch=steps_per_epoch,
+#               validation_data=(X_test, y_cat_test))
 
 show_metrics(r)
 model.save('cnn_epochs.h5')

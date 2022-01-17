@@ -21,13 +21,6 @@ X_test = X_test / 255.0
 y_cat_train = to_categorical(y_train, 10)
 y_cat_test = to_categorical(y_test, 10)
 
-# Image test
-# my_image = X_test[100]
-# plt.imshow(my_image)
-# plt.show()
-# print(y_test[100])
-# print(np.argmax(model.predict(my_image.reshape(1, 32, 32, 3))))
-
 evaluation = model.evaluate(X_test, y_cat_test)
 print(f'Test Accuracy : {evaluation[1] * 100:.2f}%')
 
