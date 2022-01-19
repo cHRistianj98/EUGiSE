@@ -4,7 +4,10 @@ from tensorflow.keras.utils import to_categorical
 import matplotlib.pyplot as plt
 import numpy as np
 
-model = keras.models.load_model('kernel_size_3-3.h5')
+model = keras.models.load_model('models/conv256.h5')
+# model = keras.models.load_model('models/kernel_size_1-1.h5')
+# model = keras.models.load_model('models/kernel_size_3-3.h5')
+# model = keras.models.load_model('models/kernel_size_5-5.h5')
 
 # Load the data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()

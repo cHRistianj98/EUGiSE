@@ -1,7 +1,4 @@
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-# %matplotlib inline
 
 import tensorflow as tf
 from keras.applications.densenet import DenseNet121
@@ -12,9 +9,6 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, MaxPool2D, Flatten, Dropout, BatchNormalization
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-
-from sklearn.metrics import ConfusionMatrixDisplay
-from sklearn.metrics import classification_report, confusion_matrix
 
 
 def show_metrics(res):
@@ -103,8 +97,8 @@ y_cat_test = to_categorical(y_test, 10)
 
 # Building model
 model = Sequential()
-# model = build_model(model)
-model = build_dense_net_model(model)
+model = build_model(model)
+# model = build_dense_net_model(model)
 
 METRICS = [
     'accuracy',
@@ -123,15 +117,15 @@ train_generator = data_generator.flow(X_train, y_cat_train, batch_size)
 steps_per_epoch = X_train.shape[0] // batch_size
 
 
-r = model.fit(train_generator,
-              epochs=100,
-              steps_per_epoch=steps_per_epoch,
-              validation_data=(X_test, y_cat_test))
-
 # r = model.fit(train_generator,
-#               epochs=50,
+#               epochs=100,
 #               steps_per_epoch=steps_per_epoch,
 #               validation_data=(X_test, y_cat_test))
 
+r = model.fit(train_generator,
+              epochs=50,
+              steps_per_epoch=steps_per_epoch,
+              validation_data=(X_test, y_cat_test))
+
 show_metrics(r)
-model.save('cnn_epochs.h5')
+model.save('kernel_size_3-3.h5')

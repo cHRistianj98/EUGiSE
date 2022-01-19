@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-# %matplotlib inline
 
 from tensorflow import keras
 from tensorflow.keras.datasets import cifar10
@@ -30,16 +29,19 @@ def plot_value_array(i, predictions_array, true_label):
     plt.grid(False)
     plt.xticks(range(10))
     plt.yticks([])
-    thisplot = plt.bar(range(10), predictions_array, color="#777777")
+    this_plot = plt.bar(range(10), predictions_array, color="#777777")
     plt.ylim([0, 1])
     predicted_label = np.argmax(predictions_array)
 
-    thisplot[predicted_label].set_color('red')
-    thisplot[true_label].set_color('blue')
+    this_plot[predicted_label].set_color('red')
+    this_plot[true_label].set_color('blue')
 
 
 # Load model
 model = keras.models.load_model('models/conv256.h5')
+# model = keras.models.load_model('models/kernel_size_1-1.h5')
+# model = keras.models.load_model('models/kernel_size_3-3.h5')
+# model = keras.models.load_model('models/kernel_size_5-5.h5')
 
 # Load the data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
@@ -78,4 +80,7 @@ for i in range(num_images):
     plot_value_array(i, predictions[i], y_test)
 plt.tight_layout()
 plt.savefig(fname='results/conv256.png', orientation='landscape')
+# plt.savefig(fname='results/results_1-1.png', orientation='landscape')
+# plt.savefig(fname='results/results_3-3.png', orientation='landscape')
+# plt.savefig(fname='results/results_5-5.png', orientation='landscape')
 plt.show()
