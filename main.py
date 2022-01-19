@@ -112,7 +112,7 @@ METRICS = [
     tf.keras.metrics.Recall(name='recall')
 ]
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=METRICS)
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics='accuracy')
 print(model.summary())
 
 early_stop = EarlyStopping(monitor='val_loss', patience=2)

@@ -4,7 +4,7 @@ from tensorflow.keras.utils import to_categorical
 import matplotlib.pyplot as plt
 import numpy as np
 
-model = keras.models.load_model('cnn_epochs.h5')
+model = keras.models.load_model('kernel_size_3-3.h5')
 
 # Load the data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
@@ -28,7 +28,7 @@ y_cat_test = to_categorical(y_test, 10)
 
 # my_image = X_test[70]
 # plt.imshow(my_image)
-# plt.savefig(fname='test-44.png', orientation='landscape')
+# plt.savefig(fname='test-70.png', orientation='landscape')
 # plt.show()
 # print(y_test[70])
 # print(classes_name[np.argmax(model.predict(my_image.reshape(1, 32, 32, 3)))])

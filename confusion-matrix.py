@@ -7,7 +7,7 @@ import numpy as np
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import confusion_matrix
 
-model = keras.models.load_model('cnn_epochs.h5')
+model = keras.models.load_model('models/kernel_size_3-3.h5')
 
 # Load the data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
@@ -33,5 +33,5 @@ disp = ConfusionMatrixDisplay(confusion_matrix=cm,
 
 fig, ax = plt.subplots(figsize=(10, 10))
 disp = disp.plot(xticks_rotation='vertical', ax=ax, cmap='copper')
-plt.savefig(fname='confusion.png', orientation='landscape')
+plt.savefig(fname='confusion-matrix/confusion_4-4.png', orientation='landscape')
 plt.show()
