@@ -68,6 +68,13 @@ def build_model(net_model):
     net_model.add(MaxPool2D(pool_size=(2, 2)))
     net_model.add(Dropout(0.25))
 
+    net_model.add(Conv2D(filters=256, kernel_size=(3, 3), input_shape=(32, 32, 3), activation='relu', padding='same'))
+    net_model.add(BatchNormalization())
+    net_model.add(Conv2D(filters=256, kernel_size=(3, 3), input_shape=(32, 32, 3), activation='relu', padding='same'))
+    net_model.add(BatchNormalization())
+    net_model.add(MaxPool2D(pool_size=(2, 2)))
+    net_model.add(Dropout(0.25))
+
     net_model.add(Flatten())
     net_model.add(Dense(128, activation='relu'))
     net_model.add(Dropout(0.25))

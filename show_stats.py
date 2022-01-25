@@ -38,10 +38,12 @@ def plot_value_array(i, predictions_array, true_label):
 
 
 # Load model
-model = keras.models.load_model('models/conv256.h5')
+# model = keras.models.load_model('models/conv256.h5')
 # model = keras.models.load_model('models/kernel_size_1-1.h5')
 # model = keras.models.load_model('models/kernel_size_3-3.h5')
 # model = keras.models.load_model('models/kernel_size_5-5.h5')
+# model = keras.models.load_model('models/kernel_size_7-7.h5')
+model = keras.models.load_model('models/densenet.h5')
 
 # Load the data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
@@ -79,8 +81,10 @@ for i in range(num_images):
     plt.subplot(num_rows, 2*num_cols, 2*i+2)
     plot_value_array(i, predictions[i], y_test)
 plt.tight_layout()
-plt.savefig(fname='results/conv256.png', orientation='landscape')
+# plt.savefig(fname='results/conv256.png', orientation='landscape')
 # plt.savefig(fname='results/results_1-1.png', orientation='landscape')
 # plt.savefig(fname='results/results_3-3.png', orientation='landscape')
 # plt.savefig(fname='results/results_5-5.png', orientation='landscape')
+# plt.savefig(fname='results/results_7-7.png', orientation='landscape')
+plt.savefig(fname='confusion-matrix/results_densenet.png', orientation='landscape')
 plt.show()

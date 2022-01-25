@@ -7,10 +7,12 @@ import numpy as np
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import confusion_matrix
 
-model = keras.models.load_model('models/conv256.h5')
+# model = keras.models.load_model('models/conv256.h5')
 # model = keras.models.load_model('models/kernel_size_1-1.h5')
 # model = keras.models.load_model('models/kernel_size_3-3.h5')
 # model = keras.models.load_model('models/kernel_size_5-5.h5')
+# model = keras.models.load_model('models/kernel_size_7-7.h5')
+model = keras.models.load_model('models/densenet.h5')
 
 # Load the data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
@@ -37,8 +39,10 @@ disp = ConfusionMatrixDisplay(confusion_matrix=cm,
 
 fig, ax = plt.subplots(figsize=(10, 10))
 disp = disp.plot(xticks_rotation='vertical', ax=ax, cmap='copper')
-plt.savefig(fname='confusion-matrix/conv256.png', orientation='landscape')
+# plt.savefig(fname='confusion-matrix/conv256.png', orientation='landscape')
 # plt.savefig(fname='confusion-matrix/confusion_1-1.png', orientation='landscape')
 # plt.savefig(fname='confusion-matrix/confusion_3-3.png', orientation='landscape')
 # plt.savefig(fname='confusion-matrix/confusion_5-5.png', orientation='landscape')
+# plt.savefig(fname='confusion-matrix/confusion_7-7.png', orientation='landscape')
+plt.savefig(fname='confusion-matrix/confusion_densenet.png', orientation='landscape')
 plt.show()
